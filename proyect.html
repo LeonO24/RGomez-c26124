@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro diario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 5px;
+            background-color: #f58fdb;
+        }
+        nav {
+            background-color: #f7f2f2;
+            padding: 10px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            color: blueviolet;
+            text-decoration: none;
+        }
+        main {
+            padding: 5px;
+        }
+        section {
+            width: 200px;
+            height: 350px;
+            padding: 10px;
+            background: rgb(206, 161, 248);
+            margin-left: 5px;
+            margin-top: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        input, textarea {
+            width: 80%;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        button {
+            background: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            background: #222;
+            height: 20px;
+            line-height: 5px;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+            margin-left: 5px;
+            border-radius: 8px;
+        }
+        .carousel {
+            display: flex;
+            gap: 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            width: 200px;
+            background: white;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav> 
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Imagenes</a></li>
+            <li><a href="#">Store</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Mi Journal Book</h1>
+        <p>Mis favoritos</p>
+
+        <div class="carousel">
+            <div class="card">
+                <img src="imagenes/mivec1.jpg" alt="imagen 1">
+                <p>favorito 1</p>
+            </div>
+            <div class="card">
+                <img src="imagenes/elcastillo.jpg" alt="imagen 2">
+                <p>favorito 2</p>
+            </div>
+            <div class="card">
+                <img src="imagenes/el viaje de chi.jpg" alt="imagen 3">
+                <p>favorito 3</p>
+            </div>
+        </div>
+
+        <section>
+            <h2>Contacto</h2>
+            <form>
+                <label for="nombre">Nombre</label><br>
+                <input id="nombre" name="nombre" type="text"><br><br>
+
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" name="mensaje"></textarea><br><br>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>@ 2026 mi sitio web by RyO</p>
+        </footer>
+    </main>
+</body>
+</html>
