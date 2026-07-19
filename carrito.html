@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito</title>
+  <style>
+    body {
+  font-family: Arial;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background-color: #ffe4e1; /* MistyRose */
+}
+    body { font-family: Arial; margin:0; display:flex; flex-direction:column; align-items:center; }
+    h1 { color:#d87093; margin:20px; }
+    .productos { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin:20px; }
+    .producto { border:1px solid #ccc; border-radius:10px; padding:10px; width:220px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+    .producto img { width:100%; height:150px; object-fit:cover; border-radius:8px; }
+    #total { font-weight:bold; margin-top:20px; }
+    
+    button { margin:10px; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; }
+    #vaciar { background:#d87093; color:white; }
+    #volver { background:#333; color:white; }
+    #comprar { background:#28a745; color:white; }
+    #mensaje { margin-top:20px; font-size:18px; color:#28a745; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <h1>🛍️ Tu Carrito</h1>
+  <div class="productos" id="lista-carrito"></div>
+  <p id="total">Total: $0</p>
+  <button id="vaciar">Vaciar Carrito</button>
+  <button id="volver" onclick="window.location.href='tienda.html'">Volver a la tienda</button>
+  <button id="comprar">Comprar</button>
+  <p id="mensaje"></p>
+
+  <script>
+    function actualizarCarrito(){
+      let carrito=JSON.parse(localStorage.getItem("carrito"))||[];
+      let lista=document.getElementById("lista-carrito");
+      let total=0;
+      lista.innerHTML="";
+      carrito.forEach(p=>{
+        let div=document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML=`<img src="${p.imagen}" alt="${p.nombre}">
+                       <h3>${p.nombre}</h3>
+                       <p>Precio: $${p.precio}</p>`;
+        lista.appendChild(div);
+        total+=p.precio;
+      });
+      document.getElementById("total").textContent="Total: $"+total;
+    }
+
+    document.getElementById("vaciar").addEventListener("click",()=>{
+      localStorage.removeItem("carrito");
+      actualizarCarrito();
+    });
+
+    document.getElementById("comprar").addEventListener("click",()=>{
+      document.getElementById("mensaje").textContent="¡Gracias por tu compra!";
+      localStorage.removeItem("carrito"); 
+    });
+
+    actualizarCarrito();
+  </script>
+</body>
+</html>

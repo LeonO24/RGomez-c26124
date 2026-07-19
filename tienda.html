@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <style>
+    body { 
+      font-family: Arial; 
+      margin:0; 
+      background-color: #ffe4e1; /* MistyRose */
+    }
+    
+    h1 { 
+      text-align:center; 
+      color:#d87093; 
+    }
+
+    .productos { 
+      display:flex; 
+      flex-wrap:wrap; 
+      gap:20px; 
+      justify-content:center; 
+      margin:20px; 
+    }
+
+    .producto { 
+      border:1px solid #ccc; 
+      border-radius:10px; 
+      padding:10px; 
+      width:220px; 
+      text-align:center; 
+      box-shadow:0 4px 10px rgba(0,0,0,0.2); 
+    }
+
+    .producto img { 
+      width:100%; 
+      height:150px; 
+      object-fit:cover; 
+      border-radius:8px; 
+      cursor:pointer; 
+    }
+
+    #boton-carrito {
+      position: fixed; 
+      right: 20px; 
+      bottom: 20px;
+      background-color: #ffb6c1; 
+      border: none; 
+      border-radius: 50%;
+      width: 60px; 
+      height: 60px; 
+      font-size: 24px; 
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Mensaje flotante */
+    #mensaje {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #d87093;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: none;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      font-weight: bold;
+    }
+
+    /* Botón volver abajo a la izquierda */
+    .volver-btn {
+      display: inline-block;
+      margin: 20px;
+      padding: 10px 20px; 
+      border: none; 
+      border-radius: 8px; 
+      background: #d87093; 
+      color: white; 
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    }
+    .volver-btn:hover {
+      background: #c06080;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <h1>🛍️ Tienda</h1>
+
+  <div class="productos">
+    <div class="producto">
+      <img src="imagenes/stickers1.jpg" alt="stickers1" onclick="agregarProducto(1,'Stickers Dorama',10,'imagenes/stickers1.png')">
+      <h3>Stickers Dorama</h3><p>Serie romántica</p><p>$10</p>
+    </div>
+    <div class="producto">
+      <img src="imagenes/stickers2.jpg" alt="Película" onclick="agregarProducto(2,'Stickers Película',15,'imagenes/stickers2.png')">
+      <h3>Stickers Película</h3><p>Drama emocionante</p><p>$15</p>
+    </div>
+    <div class="producto">
+      <img src="imagenes/miskdramas.jpg" alt="Journal" onclick="agregarProducto(3,'Journal',20,'imagenes/miskdramas.png')">
+      <h3>Journal</h3><p>Cuaderno personal</p><p>$20</p>
+    </div>
+  </div>
+
+  <button id="boton-carrito">🛍️</button>
+
+  <!-- Mensaje flotante -->
+  <div id="mensaje"></div>
+
+  <!-- Botón volver al menú principal abajo a la izquierda -->
+  <button class="volver-btn" onclick="window.location.href='index.html'">
+    ⬅️ Volver al menú principal
+  </button>
+
+  <script>
+    function agregarProducto(id,nombre,precio,imagen){
+      let producto={id,nombre,precio,imagen};
+      let carrito=JSON.parse(localStorage.getItem("carrito"))||[];
+      carrito.push(producto);
+      localStorage.setItem("carrito",JSON.stringify(carrito));
+
+      // Mostrar mensaje en pantalla
+      let msg=document.getElementById("mensaje");
+      msg.textContent=nombre+" agregado al carrito!";
+      msg.style.display="block";
+
+      // Ocultar automáticamente después de 2 segundos
+      setTimeout(()=>{ msg.style.display="none"; },2000);
+    }
+
+    document.getElementById("boton-carrito").addEventListener("click",()=>{
+      window.location.href="carrito.html";
+    });
+  </script>
+</body>
+</html>
